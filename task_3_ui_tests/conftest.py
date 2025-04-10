@@ -5,9 +5,8 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
-@pytest.fixture(scope="function")
-def driver(request):
-    browser = request.config.getoption("--browser")
+@pytest.fixture
+def driver(browser):
     if browser == "chrome":
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     elif browser == "firefox":
@@ -18,6 +17,10 @@ def driver(request):
     yield driver
     driver.quit()
 
+def pytest_generate_tests(metafunc):
+    browsers = metafunc.config.getoption("browser").split(",")
+    if "browser" in metafunc.fixturenames:
+        metafunc.parametrize("browser", browsers, scope="function")
 
 def pytest_addoption(parser):
     parser.addoption(
