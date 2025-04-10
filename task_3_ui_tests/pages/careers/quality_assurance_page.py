@@ -18,3 +18,6 @@ class QualityAsurancePage(BasePage):
         assert "https://useinsider.com/careers/quality-assurance/" in self.get_current_url().lower()
         assert self.is_visible(*self.qa_title_xpath)
         assert self.is_visible(*self.all_qa_jobs_button_xpath)
+
+    def click_see_all_qa_jobs(self):
+        self.click(*self.all_qa_jobs_button_xpath)
