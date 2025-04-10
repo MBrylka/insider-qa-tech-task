@@ -1,6 +1,6 @@
 name: Run Api Tests
 
-on
+on:
   push:
     branches:
       -main
