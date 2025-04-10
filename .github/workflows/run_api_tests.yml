@@ -27,3 +27,9 @@ jobs:
       - name: Run API tests
         run: |
           pytest --junitxml=pytest-report.xml
+
+      - name: Add report to artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pytest-report
+          path: pytest-report.xml
