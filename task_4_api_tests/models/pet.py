@@ -16,7 +16,7 @@ class Tag:
 class Pet:
     id: int
     category: Optional[Category]
-    name: str
+    name: Optional[str]
     photoUrls: List[str]
     tags: List[Tag]
     status: str
