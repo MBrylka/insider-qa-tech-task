@@ -12,8 +12,6 @@ class PetService:
 
         if isinstance(pet_data, Pet):
             json_payload = pet_data.__dict__
-        elif isinstance(pet_data, dict):
-            json_payload = pet_data
         else:
             json_payload = None
 
@@ -25,8 +23,6 @@ class PetService:
         
         if isinstance(pet_data, Pet):
             json_payload = pet_data.__dict__
-        elif isinstance(pet_data, dict):
-            json_payload = pet_data
         else:
             json_payload = None
 
