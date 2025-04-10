@@ -1,10 +1,10 @@
-name: Run Api Tests
+name: Run UI Tests
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  ui-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,13 +21,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run API tests
+      - name: Run UI tests on Chrome and Firefox
         run: |
-          cd task_4_api_tests
-          pytest --junitxml=pytest-report.xml
+          cd task_3_ui_tests
+          pytest --browser=chrome,firefox --html=report.html --self-contained-html
 
       - name: Add report to artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: pytest-report
-          path: task_4_api_tests/pytest-report.xml
+          name: ui-test-artifacts
+          path: |
+            task_3_ui_tests/report.html
+            task_3_ui_tests/screenshots
