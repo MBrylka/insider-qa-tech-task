@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from config import settings
 
@@ -12,7 +11,7 @@ class OpenPositionsPage(BasePage):
     job_list_item_xpath = (By.XPATH, "//div[contains(@class, 'position-list-item')]")
     job_list_item_location_label_xpath = (By.XPATH, "//div[contains(@class, 'position-location')]")
     job_list_item_department_label_xpath = (By.XPATH, "//span[contains(@class,'position-department')]")
-    view_role_xpath = (By.XPATH, "//a[text()[contains(., 'View Role')]]")
+    view_role_button_xpath = (By.XPATH, "//a[text()[contains(., 'View Role')]]")
     
     def __init__(self, driver):
         super().__init__(driver)
@@ -55,5 +54,5 @@ class OpenPositionsPage(BasePage):
     def click_on_view_offer(self):
         job_list = self.find_element(*self.jobs_list_xpath)
         job_item = job_list.find_elements(*self.job_list_item_xpath)[0]
-        hover = ActionChains(self.driver).move_to_element(job_item)
-        hover.perform()
+        self.hover_over_element(job_item)
+        self.click(*self.view_role_button_xpath)

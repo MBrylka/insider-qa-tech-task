@@ -27,9 +27,9 @@ jobs:
           pytest --browser=chrome,firefox --html=report.html --self-contained-html
 
       - name: Add report to artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ui-test-artifacts
+          name: ui-test-report
           path: |
             task_3_ui_tests/report.html
             task_3_ui_tests/screenshots

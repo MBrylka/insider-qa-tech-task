@@ -2,6 +2,7 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
+from selenium.webdriver.common.action_chains import ActionChains
 
 class BasePage:
     def __init__(self, driver):
@@ -12,6 +13,10 @@ class BasePage:
 
     def get_current_url(self):
         return self.driver.current_url
+
+    def hover_over_element(self, element):
+        hover = ActionChains(self.driver).move_to_element(element)
+        hover.perform()
 
     def find_element(self, by, value):
         element = self.is_visible(by, value)
